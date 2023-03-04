@@ -1,0 +1,15 @@
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/bin/Debug/net7.0/CarClassLab02
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/bin/Debug/net7.0/CarClassLab02.deps.json
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/bin/Debug/net7.0/CarClassLab02.runtimeconfig.json
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/bin/Debug/net7.0/CarClassLab02.dll
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/bin/Debug/net7.0/CarClassLab02.pdb
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.csproj.AssemblyReference.cache
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.AssemblyInfoInputs.cache
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.AssemblyInfo.cs
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.csproj.CoreCompileInputs.cache
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.dll
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/refint/CarClassLab02.dll
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.pdb
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/CarClassLab02.genruntimeconfig.cache
+/Users/ostapkilbasovych/ClassPractice/CarClassLab02/CarClassLab02/obj/Debug/net7.0/ref/CarClassLab02.dll
