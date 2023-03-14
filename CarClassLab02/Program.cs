@@ -13,6 +13,12 @@ namespace CarClassLab02
             cars.Add(new TaxiCar("Ford Crown Victoria", 20000, 3, "Yellow Cab", 1.2));
             cars.Add(new TaxiCar("Chevrolet Impala", 22000, 3, "Green Cab", 1.1));
             cars.Add(new TaxiCar("Nissan Altima", 18000, 4, "Red Cab", 1.3));
+            cars.Add(new Car("Toyota Altima", 12312, 3));
+            cars.Add(new Car("Honda Civic", 30000, 2));
+            cars.Add(new TaxiCar("Ford Crown V5", 15000, 7, "Yellow Cab", 1.2));
+            cars.Add(new TaxiCar("Chevrolet Corolla", 19000, 1, "Green Cab", 1.1));
+            cars.Add(new TaxiCar("Nissan Altima", 19500, 2, "Green Cab", 1.3));
+            
 
             bool exit = false;
             while (!exit)
@@ -65,8 +71,13 @@ namespace CarClassLab02
                                 cheapestCar = car;
                             }
                         }
+
                         Console.WriteLine("The cheapest car is:");
                         Console.WriteLine(cheapestCar.ToString());
+                        if (cheapestCar.GetType().ToString() == typeof(TaxiCar).ToString())
+                        {
+                            Console.WriteLine("The cheapest car is TAXI car.\n");
+                        };
                         break;
                     case 4:
                         foreach (Car car in cars)
@@ -76,6 +87,21 @@ namespace CarClassLab02
                         Console.WriteLine("Service life of all cars increased by one year.");
                         break;
                     case 5:
+                        HashSet<string> uniqueModels = new HashSet<string>();
+                        List<Car> uniqueCars = new List<Car>();
+                        foreach (Car car in cars)
+                        {
+                            if (uniqueModels.Add(car.Model))
+                            {
+                                uniqueCars.Add(car);
+                            }
+                        }
+
+                        Console.WriteLine("New collection with one car of each model:");
+                        foreach (Car car in uniqueCars)
+                        {
+                            Console.WriteLine(car.ToString());
+                        }
                         break;
                     case 6:
                         exit = true;

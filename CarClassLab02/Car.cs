@@ -30,6 +30,20 @@ public class Car
         Car other = (Car)obj;
         return this.model == other.model && this.price == other.price && this.serviceLife == other.serviceLife;
     }
+    
+    public static bool operator ==(Car leftCar, Car rightCar)
+    {
+        if (ReferenceEquals(leftCar, null))
+        {
+            return ReferenceEquals(rightCar, null);
+        }
+        return leftCar.Equals(rightCar);
+    }
+
+    public static bool operator !=(Car leftCar, Car rightCar)
+    {
+        return !(leftCar == rightCar);
+    }
 
     public override string ToString()
     {
