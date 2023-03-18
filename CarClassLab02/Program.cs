@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CarClassLab02
 {
@@ -7,7 +8,6 @@ namespace CarClassLab02
     {
         static void Main(string[] args)
         {
-
             List<Car> cars = initSampleList();
             
             bool exit = false;

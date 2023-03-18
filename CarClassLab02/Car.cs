@@ -1,6 +1,6 @@
 namespace CarClassLab02;
 
-public class Car
+public class Car: IFormattable
 {
     private String model;
     private uint price;
@@ -45,10 +45,7 @@ public class Car
         return !(leftCar == rightCar);
     }
 
-    public override string ToString()
-    {
-        return $"Model: {model}\nPrice: {price}\nService life: {serviceLife} y.\n";
-    }
+
 
     public static bool operator >(Car leftCar, Car rightCar)
     {
@@ -96,9 +93,37 @@ public class Car
             this.serviceLife = value;
         }
     }
+       public override string ToString()
+    {
+        return $"Model: {model}\nPrice: {price}\nService life: {serviceLife} y.\n";
+    }
+    
+    public string ToString(string format, IFormatProvider formatProvider)
+    {
+        if (format == null)
+        {
+            return ToString();
+        }
+
+        switch (format.ToUpper())
+        {
+            case "P":
+                return $"Price: {price}";
+            case "SL":
+                return $"Service life: {serviceLife} y.";
+            case "M": 
+                return $"Model: {model}";
+            case "F":
+                return $"Model: {model}, Price: {price}, Service life: {serviceLife} y.";
+            case "MP":
+                return $"Model: {model}, Price: {price}";
+            default:
+                throw new FormatException($"The {format} format string is not supported.");
+        }
+    }
 }
 
-public class TaxiCar : Car
+public class TaxiCar : Car, IFormattable
 {
     private string company;
     private double coefficient;
@@ -131,5 +156,27 @@ public class TaxiCar : Car
     public override string ToString()
     {
         return base.ToString() + $"Company: {company}\nCoefficient: {coefficient}\n";
+    }
+    
+    public string ToString(string format, IFormatProvider formatProvider)
+    {
+        if (format == null)
+        {
+            return ToString();
+        }
+
+        switch (format.ToUpper())
+        {
+            case "P":
+                return $"Taxi price: {TaxiPrice}";
+            case "M":
+                return $"Taxi model: {Model}\nCompany: {company}";
+            case "PM":
+                return $"Taxi price: {TaxiPrice}\nTaxi model: {Model}";
+            case "PMC":
+                return $"Taxi price: {TaxiPrice}\nTaxi model: {Model}\nCompany: {company}";
+            default:
+                throw new FormatException($"The {format} format string is not supported.");
+        }
     }
 }
