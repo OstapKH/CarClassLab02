@@ -1,6 +1,6 @@
 namespace CarClassLab02;
 
-public class Car: IFormattable
+public class Car: IFormattable, ICloneable
 {
     private String model;
     private uint price;
@@ -97,8 +97,13 @@ public class Car: IFormattable
     {
         return $"Model: {model}\nPrice: {price}\nService life: {serviceLife} y.\n";
     }
-    
-    public string ToString(string format, IFormatProvider formatProvider)
+
+       public object Clone()
+       {
+           return new Car(this.model, this.price, this.serviceLife);
+       }
+
+       public string ToString(string format, IFormatProvider formatProvider)
     {
         if (format == null)
         {
@@ -123,7 +128,7 @@ public class Car: IFormattable
     }
 }
 
-public class TaxiCar : Car, IFormattable
+public class TaxiCar : Car, IFormattable, ICloneable
 {
     private string company;
     private double coefficient;
@@ -178,5 +183,10 @@ public class TaxiCar : Car, IFormattable
             default:
                 throw new FormatException($"The {format} format string is not supported.");
         }
+    }
+
+    public object Clone()
+    {
+        return new TaxiCar(this.Model, this.Price, this.ServiceLife, this.company, this.coefficient);
     }
 }
