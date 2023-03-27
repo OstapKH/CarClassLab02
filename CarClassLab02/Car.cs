@@ -1,6 +1,6 @@
 namespace CarClassLab02;
 
-public class Car: IFormattable, ICloneable
+public class Car: IFormattable, ICloneable, IComparable
 {
     private String model;
     private uint price;
@@ -98,6 +98,31 @@ public class Car: IFormattable, ICloneable
         return $"Model: {model}\nPrice: {price}\nService life: {serviceLife} y.\n";
     }
 
+       //CompareTo compares Cars by all parameters, first- model, second - price, third - service life
+       public virtual int CompareTo(object? obj)
+       {
+           if (obj == null)
+           {
+               return 1;
+           }
+
+           Car other = (Car)obj;
+           
+           int modelComparison = this.model.CompareTo(other.model);
+           if (modelComparison != 0)
+           {
+               return modelComparison;
+           }
+
+           int priceComparison = this.price.CompareTo(other.price);
+           if (priceComparison != 0)
+           {
+               return priceComparison;
+           }
+
+           return this.serviceLife.CompareTo(other.serviceLife);       
+       }
+
        public object Clone()
        {
            return new Car(this.model, this.price, this.serviceLife);
@@ -128,7 +153,7 @@ public class Car: IFormattable, ICloneable
     }
 }
 
-public class TaxiCar : Car, IFormattable, ICloneable
+public class TaxiCar : Car, IFormattable, ICloneable, IComparable
 {
     private string company;
     private double coefficient;
@@ -184,7 +209,24 @@ public class TaxiCar : Car, IFormattable, ICloneable
                 throw new FormatException($"The {format} format string is not supported.");
         }
     }
+    
+    public override int CompareTo(object obj)
+    {
+        int baseComparison = base.CompareTo(obj);
 
+        if (obj is TaxiCar other && baseComparison == 0)
+        {
+            int companyComparison = this.company.CompareTo(other.company);
+            if (companyComparison != 0)
+            {
+                return companyComparison;
+            }
+
+            return this.coefficient.CompareTo(other.coefficient);
+        }
+
+        return baseComparison;
+    }
     public object Clone()
     {
         return new TaxiCar(this.Model, this.Price, this.ServiceLife, this.company, this.coefficient);
