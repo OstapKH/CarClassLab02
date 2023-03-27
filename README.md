@@ -44,3 +44,28 @@ This is a C# project that contains two classes: `Car` and `TaxiCar`. The `Car` c
 - `ToString()`: A method that returns a string representation of the taxi car object.
 - `TaxiPrice`: A read-only property that returns the taxi price of the taxi car based on its price, coefficient, and actual price.
 
+## How CompareTo Works
+
+The `CompareTo` method is part of the non-generic `IComparable` interface implementation in the `Car` and `TaxiCar` classes. This method allows you to compare two objects of the same type and determine their relative order in a sorted list or array.
+
+### Car Class
+
+In the `Car` class, the comparison is done based on the following attributes, in order:
+
+1. Model
+2. Price
+3. Service life
+
+If the `Model` property is different between two instances, they will be sorted alphabetically based on the model name. If the models are the same, the instances will be sorted based on the `Price` property, from lowest to highest. If the prices are the same, the instances will be sorted based on the `ServiceLife` property, from lowest to highest.
+
+### TaxiCar Class
+
+In the `TaxiCar` class, which inherits from the `Car` class, the comparison includes additional attributes, in the following order:
+
+1. Model (inherited from `Car`)
+2. Price (inherited from `Car`)
+3. Service life (inherited from `Car`)
+4. Company
+5. Coefficient
+
+The first three attributes are compared in the same way as in the `Car` class. If these attributes are the same between two `TaxiCar` instances, they will be sorted alphabetically based on the `Company` property. If the companies are the same, the instances will be sorted based on the `Coefficient` property, from lowest to highest.
