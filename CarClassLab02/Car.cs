@@ -11,6 +11,7 @@ public class Car: IFormattable, ICloneable, IComparable
         this.model = "Default model";
         this.price = 0;
         this.serviceLife = 0;
+        TechnicalInspectionNeeded += HandleTechnicalInspectionNeeded;
     }
     
     public Car(string model, uint price, uint serviceLife)
@@ -18,6 +19,7 @@ public class Car: IFormattable, ICloneable, IComparable
         this.model = model;
         this.price = price;
         this.serviceLife = serviceLife;
+        TechnicalInspectionNeeded += HandleTechnicalInspectionNeeded;
     }
 
     public override bool Equals(object obj)
@@ -83,6 +85,20 @@ public class Car: IFormattable, ICloneable, IComparable
         }
     }
     
+    // declaring delegate that send message about necessity of technical after increasing service life of the car
+    public delegate void TechnicalInspectionNeededHandler(string msgForCaller);
+    
+    public event TechnicalInspectionNeededHandler TechnicalInspectionNeeded;
+
+    private void OnTechnicalInspectionNeeded(string msg)
+    {
+        TechnicalInspectionNeeded?.Invoke(msg);
+    }
+    
+    private void HandleTechnicalInspectionNeeded(string message)
+    {
+        Console.WriteLine(message);
+    }
     public uint ServiceLife{
         get
         {
@@ -90,8 +106,17 @@ public class Car: IFormattable, ICloneable, IComparable
         }
         set
         {
+            if (value >= this.serviceLife + 1)
+            {
+                OnTechnicalInspectionNeeded($"***Technical inspection is needed for car \"{Model}\" each year.***");
+            }
             this.serviceLife = value;
         }
+    }
+
+    public void IncreaseServiceLifeByYear()
+    {
+        this.ServiceLife++;
     }
        public override string ToString()
     {
