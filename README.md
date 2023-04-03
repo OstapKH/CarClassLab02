@@ -69,3 +69,12 @@ In the `TaxiCar` class, which inherits from the `Car` class, the comparison incl
 5. Coefficient
 
 The first three attributes are compared in the same way as in the `Car` class. If these attributes are the same between two `TaxiCar` instances, they will be sorted alphabetically based on the `Company` property. If the companies are the same, the instances will be sorted based on the `Coefficient` property, from lowest to highest.
+
+
+## Events Implementation
+
+The `TechnicalInspectionNeeded` event is raised when the `ServiceLife` property of a `Car` is increased by one year. This event is implemented using a delegate `TechnicalInspectionNeededHandler` and an event handler `OnTechnicalInspectionNeeded`. This event allows other objects to be notified when a technical inspection is needed for the car.
+
+The `PriceChanged` event is raised whenever the `Price` property of a `Car` is changed. This event is implemented using a delegate `PriceChangedHandler` and an event handler `OnPriceChanged`. This event allows other objects to be notified when the price of the car changes.
+
+The `TaxiCar` class also uses events inherited from its parent class `Car`.
