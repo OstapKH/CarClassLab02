@@ -27,7 +27,6 @@ namespace CarClassLab02
                         Car cheapestCar = getTheCheapestCar(cars);
                         Console.WriteLine("The cheapest car is:");
                         Console.WriteLine(cheapestCar.ToString());
-                        
                         if (isCarTaxi(cheapestCar))
                         {
                             Console.WriteLine("The cheapest car is TAXI car.\n");
@@ -44,6 +43,13 @@ namespace CarClassLab02
                         PrintListOfCars(uniqueCars);
                         break;
                     case 6:
+                        Console.WriteLine("----Demonstration of Event work----");
+                        Console.WriteLine(cars[0]);
+                        Console.WriteLine("Increasing service life for 1 year calling method 'IncreaseServiceLifeByYear()'");
+                        cars[0].IncreaseServiceLifeByYear();
+                        Console.WriteLine(cars[0]);
+                        break;
+                    case 7:
                         exit = true;
                         break;
                     default:
@@ -110,7 +116,8 @@ namespace CarClassLab02
             Console.WriteLine("3. Find the cheapest car");
             Console.WriteLine("4. Increase service life of all cars by one year");
             Console.WriteLine("5. Create a new collection with one car of each model");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Demonstration of Event");
+            Console.WriteLine("7. Exit");
         }
 
         static Car getTheCheapestCar(List<Car> cars)

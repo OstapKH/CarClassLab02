@@ -11,6 +11,8 @@ public class Car: IFormattable, ICloneable, IComparable
         this.model = "Default model";
         this.price = 0;
         this.serviceLife = 0;
+        TechnicalInspectionNeeded += HandleTechnicalInspectionNeeded;
+        PriceChanged += HandlePriceChanged;
     }
     
     public Car(string model, uint price, uint serviceLife)
@@ -18,6 +20,8 @@ public class Car: IFormattable, ICloneable, IComparable
         this.model = model;
         this.price = price;
         this.serviceLife = serviceLife;
+        TechnicalInspectionNeeded += HandleTechnicalInspectionNeeded;
+        PriceChanged += HandlePriceChanged;
     }
 
     public override bool Equals(object obj)
@@ -81,8 +85,48 @@ public class Car: IFormattable, ICloneable, IComparable
         {
             return this.price;
         }
+        set
+        {
+            uint oldPrice = this.price;
+            this.price = value;
+            if (oldPrice != this.price)
+            {
+                OnPriceChanged(oldPrice, this.price);
+            }
+        }
     }
     
+    // declaring delegate that send message about necessity of technical after increasing service life of the car
+    public delegate void TechnicalInspectionNeededHandler(string msgForCaller);
+
+    public event TechnicalInspectionNeededHandler TechnicalInspectionNeeded;
+
+
+    private void OnTechnicalInspectionNeeded(string message)
+    {
+        TechnicalInspectionNeeded?.Invoke(message);
+    }
+    
+    private void HandleTechnicalInspectionNeeded(string message)
+    {
+        Console.WriteLine(message);
+    }
+    
+    // implementing event PriceChanged, which is executed when price of the car is changed
+    public delegate void PriceChangedHandler(double oldPrice, double newPrice);
+
+    public event PriceChangedHandler PriceChanged;
+    
+    private void OnPriceChanged(double oldPrice, double newPrice)
+    {
+        PriceChanged?.Invoke(oldPrice, newPrice);
+    }
+
+    private void HandlePriceChanged(double oldPrice, double newPrice)
+    {
+        Console.WriteLine($"Price was changed. From {oldPrice} to {newPrice}");
+    }
+
     public uint ServiceLife{
         get
         {
@@ -90,8 +134,17 @@ public class Car: IFormattable, ICloneable, IComparable
         }
         set
         {
+            if (value >= this.serviceLife + 1)
+            {
+                OnTechnicalInspectionNeeded($"***Technical inspection is needed for car \"{Model}\" each year.***");
+            }
             this.serviceLife = value;
         }
+    }
+
+    public void IncreaseServiceLifeByYear()
+    {
+        this.ServiceLife++;
     }
        public override string ToString()
     {
